@@ -17,4 +17,4 @@ Datasets structure
 
 Run the python code
 
-  python generate_jsons.py
+  > python generate_jsons.py
