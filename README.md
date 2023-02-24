@@ -10,3 +10,6 @@ Datasets structure
       train2017_annotations
       val2017_annotations
 
+![image](https://user-images.githubusercontent.com/18215999/221136004-a20bc689-45bd-48ee-a2d6-4630fcdd683e.png)
+
+
