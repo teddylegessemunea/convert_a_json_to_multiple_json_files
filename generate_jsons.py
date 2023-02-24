@@ -1,18 +1,12 @@
-import datetime
-import errno
 import json
 import os
-import time
-from collections import defaultdict, deque
 
-import torch
-import torch.distributed as dist
 import config_file as confs
 
 
 def create_single_json_file(data_category, data_phase):
-    ann_destination = os.path.join(confs.base_path, data_category, data_phase + '_annotations/')
-    annFile = os.path.join(confs.base_path, data_category, 'annotations', confs.ann_type + '_' + data_phase + '.json')
+    ann_destination = os.path.join(base_path, data_category, data_phase + '_annotations/')
+    annFile = os.path.join(base_path, data_category, 'annotations', ann_type + '_' + data_phase + '.json')
 
     with open(annFile) as json_file:
         data = json.load(json_file)
@@ -52,20 +46,18 @@ def create_single_json_file(data_category, data_phase):
             a_json_key = f'{ann_destination}{a_img_file_name}.json'
             with open(a_json_key, 'w') as json_key:
                 json.dump(a_img_dict, json_key, indent=4)
+                print(f'{json_key} created !')
 
 
-# main_path = os.path.join(confs.base_path, data_category, 'images', data_phase)
+base_path = datasets  # the directory which contain all your datasets including ms_coco datasets
+ann_type = 'person_keypoints'  # ann_type can be person_keypoints, captions, instances, image_info
+base_path = os.path.join(confs.base_path, data_category, 'images', data_phase)
 
 # to create single json files for ms_coco person_keypoints_train2017.json file
-create_single_json_file(confs.dataset_type[0], confs.dataset_phase[0])
+create_single_json_file('ms_coco', 'train2017')
 
 # to create single json files for ms_coco person_keypoints_train2017.json file
-create_single_json_file(confs.dataset_type[0], confs.dataset_phase[1])
+create_single_json_file('ms_coco', 'val2017')
 
-
-test_ann_file = os.path.join(confs.base_path, confs.dataset_type[0],
-                             confs.dataset_phase[0] + '_annotations/000000184613.json')
-with open(test_ann_file) as json_file:
-    single_data = json.load(json_file)
-    print((single_data['info']))
+print('finished')
 
