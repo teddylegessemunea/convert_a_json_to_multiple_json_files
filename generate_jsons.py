@@ -1,8 +1,6 @@
 import json
 import os
 
-import config_file as confs
-
 
 def create_single_json_file(data_category, data_phase):
     ann_destination = os.path.join(base_path, data_category, data_phase + '_annotations/')
@@ -51,7 +49,6 @@ def create_single_json_file(data_category, data_phase):
 
 base_path = datasets  # the directory which contain all your datasets including ms_coco datasets
 ann_type = 'person_keypoints'  # ann_type can be person_keypoints, captions, instances, image_info
-base_path = os.path.join(confs.base_path, data_category, 'images', data_phase)
 
 # to create single json files for ms_coco person_keypoints_train2017.json file
 create_single_json_file('ms_coco', 'train2017')
